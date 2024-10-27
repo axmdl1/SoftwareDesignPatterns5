@@ -1,6 +1,7 @@
 package state;
 
 import strategy.FightingStrategy;
+import visitor.EffectVisitor;
 
 public class GameCharacter {
     private CharacterState currentState;
@@ -39,5 +40,10 @@ public class GameCharacter {
 
     public void fight(){
         currentStrategy.fight();
+    }
+
+    public void acceptVisitor(EffectVisitor visitor){
+        visitor.applyBoost(this);
+        visitor.applyDamage(this);
     }
 }

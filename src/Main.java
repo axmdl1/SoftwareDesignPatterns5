@@ -5,6 +5,9 @@ import template.AttackAction;
 import template.DefendAction;
 import template.GameAction;
 import template.HealAction;
+import visitor.BoostVisitor;
+import visitor.DamageVisitor;
+import visitor.EffectVisitor;
 
 public class Main {
     public static void main(String[] args) {
@@ -59,5 +62,15 @@ public class Main {
 
         System.out.println("Heal: ");
         heal.executeAction();
+
+        System.out.println("--------------------------------------------------------------");
+
+        System.out.println("Apply boost: ");
+        EffectVisitor boostVis = new BoostVisitor();
+        gameCharacter.acceptVisitor(boostVis);
+
+        System.out.println("Apply Damage: ");
+        EffectVisitor damageVis = new DamageVisitor();
+        gameCharacter.acceptVisitor(damageVis);
     }
 }
